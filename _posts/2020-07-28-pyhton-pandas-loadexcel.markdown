@@ -1,7 +1,7 @@
 ---  
 layout: post  
 title: "판다스의 기본"  
-subtitle: "pandas "  
+subtitle: "pandas"  
 categories:  python  
 tags: pandas excel 엑셀 
 comments: false  
