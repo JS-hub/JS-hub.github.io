@@ -3,7 +3,7 @@ layout: post
 title: "판다스의 기본"  
 subtitle: "pandas"  
 categories:  python  
-tags: pandas excel 엑셀 
+tags: pandas 판다스 정리
 comments: false  
 #header-img: img//2020-04-10-review-book-ai-expert-in-one-year-1.jpg  
 ---  
