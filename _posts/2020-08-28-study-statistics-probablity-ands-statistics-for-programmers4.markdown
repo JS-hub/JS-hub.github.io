@@ -1,11 +1,10 @@
 ---  
 layout: post  
-title: "프로그래머를 위한 확률과 통계 4장"  
+title: "프로그래머를 위한 확률과 통계 4장!"  
 subtitle: "statistics"  
 categories:  study
 tags: statistics 확률 
 comments: false  
-use_math: true
 ---  
 
 ## 연속확률변수
