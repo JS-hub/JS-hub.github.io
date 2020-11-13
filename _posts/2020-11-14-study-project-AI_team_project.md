@@ -1,6 +1,6 @@
 ---  
 layout: post  
-title: "AI+X:딥러닝 팀 프로젝트: 이미지 분류(가제) "  
+title: "AI+X:딥러닝 팀 프로젝트: 이미지 분류 "  
 subtitle: "project"  
 categories:  study
 tags: project 딥러닝 AI 
