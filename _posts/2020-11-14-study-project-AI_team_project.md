@@ -1,3 +1,6 @@
+---
+published: false
+---
 ---  
 layout: post  
 title: "AI+X:딥러닝 팀 프로젝트: 이미지 분류(가제) "  
@@ -6,8 +9,7 @@ categories:  study
 tags: project 딥러닝 AI 
 comments: false  
 ---  
-# AI+X: 팀프로젝트 
-## Title
+# Title
 ### Introduction
 ### Method
 ### Result 
