@@ -9,6 +9,9 @@
 <meta property="og:title" content="{{ page.title }}">
 <meta property="og:type" content="article">
 
+{% if page.use_math %}
+  {% include mathjax_support.html %}
+{% endif %}
 
 {% for tag_slug in page.tags %}
   {% unless tag.header-img %}

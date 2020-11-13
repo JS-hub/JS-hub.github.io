@@ -5,6 +5,7 @@ subtitle: "statistics"
 categories:  study
 tags: statistics 확률 
 comments: false  
+use_math: true
 ---  
 
 ## 연속확률변수
