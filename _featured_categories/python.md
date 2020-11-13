@@ -6,5 +6,5 @@ menu: true
 submenu: true
 order: 3
 description: >
-  주로 데이터 전처리에 관한 Pandas 사용법.  
+  전처리에 사용되는 라이브러리 정리.  
 ---

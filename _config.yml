@@ -2,7 +2,7 @@
 #  User configuration
 # -----------------------------------------------------------------------------
 
-title:               재선의 기록용 블로그
+title:               Jaseon's blog
 
 # The unique resource location of your page.
 # Set to `https://<username>.github.io` when hosting on GitHub Pages
@@ -13,7 +13,8 @@ url:                 https://JS-hub.github.io
 baseurl:             ""
 
 # A very short description of your page
-tagline:             "후회없이 살아보자"
+tagline:             "I was born not knowing and have had only a little time to change that here and there.
+  Richard P. Feynman"
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
@@ -26,7 +27,7 @@ author:
   email:             wotjs212@gmail.com
 
 # Fallback image and color
-image:               /assets/img/main_left.jpg
+image:               /assets/img/main_left.png
 color:               '#4f86aa'
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.

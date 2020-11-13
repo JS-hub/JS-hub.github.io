@@ -1,10 +1,10 @@
 ---
 layout: list
-title: Favorites
-slug: favorites
+title: Favorite
+slug: favorite
 menu: true
 submenu: false
 order: 4
 description: >
-  일상, 취미 모음.
+  일상, 취미
 ---
