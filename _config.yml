@@ -115,10 +115,10 @@ exclude:
 
 kramdown:
   footnote_backlink: '&#x21a9;&#xfe0e;'
-  math_engine: mathjax
-  # math_engine_opts: 
-  #   preview:         true
-  #   preview_as_code: true
+  math_engine:
+  math_engine_opts: katex
+    preview:         true
+    preview_as_code: true
 
 compress_html:
   comments:          ["<!-- ", " -->"]
