@@ -1,6 +1,7 @@
 {% assign post = include.post %}
 
 <article id="post-{{ post.id | slice: 1,9999 }}" class="post{% if include.link_title %} mb6{% endif %}" role="article">
+  <head> {% include mathjax_support.html %} </head>
   <header>
     
     <h1 class="post-title">
@@ -16,7 +17,6 @@
     </p>
 
     {% include message.html text=post.description %}
-    {% include mathjax_support.html %}
    
   </header>
   {% for tag_slug in post.tags %}
