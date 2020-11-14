@@ -7,6 +7,6 @@ order: 10
 
 ## 소개
 
-평범한 대학생입니다. 
+Mathjax가 한번에 렌더가 안됩니다... 새로고침 해주세요... 
 * Statistics & Deep learning 
 
