@@ -1,4 +1,8 @@
 {% if site.google_analytics %}
+<script type="text/x-mathjax-config" 
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
 <script>
   window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
   ga('create', '{{ site.google_analytics }}', 'auto');
@@ -9,10 +13,6 @@
 
 {% assign google_fonts = site.google_fonts | default:"Roboto+Slab:700|Noto+Serif:400,400i,700,700i" %}
 
-
-<script type="text/javascript" 
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-</script>
 {% capture icons_url %}{% link assets/icomoon/style.css %}{% endcapture %}
 <!--[if gt IE 8]><!---->
 <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
