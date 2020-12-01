@@ -7,25 +7,30 @@ tags: project 딥러닝 AI
 comments: false  
 ---  
 # 딥러닝을 통한 남녀 분류 모델 만들기
-<br>
+---
 
 ## Index
-#### 1.Introduction 
-#### 2.Datasets
-- #### 이미지 크롤링
-- #### 이미지 리사이즈
-- #### 라벨링 
-- #### 학습/테스트 데이터셋 분리
-#### 3.Model
-#### 4.Evaluation & Disscussion
+- #### 1.Introduction 
+- #### 2.Datasets
+  - #### 2-1. 이미지 크롤링
+  - #### 2-2.이미지 리사이즈
+  - #### 2-3.라벨링 
+  - #### 2-4.학습/테스트 데이터셋 분리
+- #### 3.Model
+  - #### 3-1 CNN(Convolutional Neural Network)
+  - #### 3-2 모델구현
+- #### 4.Evaluation & Disscussion
+  - #### 4-1 모델평가 
 
 <br>
 
 ## 1.Introduction
+---
  저희 팀은 직접 데이터를 만들고 테스트 할 수 있으면 좋겠다고 생각했습니다. 그래서 남녀 분류 모델을 만들기로 계획을 했고 모델을 다 학습시킨 뒤에는 저희 사진을 모델에 넣으면 어떻게 분류할지 확인할 것입니다.
 <br>
 
 ## 2.Datasets 
+---
 남녀 구분 모델에 필요한 데이터 셋은 남자와 여자 사진입니다. kaggle에서 이미지 데이터 셋을 구할 수 있었지만 조원들끼리 직접 이미지를 수집하고 처리하여 데이터 셋을 만들고자 하였습니다. 또한 최대한 다양한 인종과 나이대에 대해 적용시킬 수 있게 조원간에 이미지 수집 분야를 나눴습니다. 
 ```
 김덕성 : 초등 ~ 청소년
@@ -33,7 +38,7 @@ comments: false
 박재선 : (외국) 배우 가수
 장진웅 : 노인 남녀
 ```
-<br>
+
 
 ### 이미지 크롤링
 이미지 수집은 구글 크롤링을 통하여 수집을 하였고 크롤링에 필요한 툴은 <a href="https://github.com/Joeclinton1/google-images-download.git" target="_blank">https://github.com/Joeclinton1/google-images-download.git</a>에서 다운받아 실행하였습니다. 개발환경은 구글코랩이며 크롤링하는 코드는 다음과 같습니다.
@@ -60,8 +65,7 @@ paths = response.download(arguments)
 모델에 이미지를 집어넣기 위해서 모두 같은 크기의 사진으로 설정해주어야 합니다. 따라서 이미지크기 분포를 확인해야 합니다. 분포를 확인하기위한 코드는 다음과 같습니다.
 
 ```python
-
-import os, pickle, cv2
+import os, pickle, cv2 
 import numpy as np 
 import matplotlib.pyplot as plt 
 
@@ -190,9 +194,10 @@ for i in range(len(output)):
 X_train, Y_train = output[0], output[1] 
 X_test, Y_test = output[2], output[3]
 ```
-여기까지하면 모델에 집어넣을 데이터 준비가 끝났습니다.
+여기까지 전처리를 마치고 이제 모델에 집어넣을 데이터 준비가 끝났습니다.
 
 ## Model 
+---
 사용할 모델은 CNN을 기반으로 하는 VGGNET에 Batch Normalization을 추가하였으며 손실함수는 Cross-entropy를 사용하였고 최적화함수는 Adamoptimizer를 사용하였습니다. Model을 구성할 것입니다. 모델 구현에 앞서 모델이 어떤 방식으로 훈련하는지 설명드리겠습니다.
 
 
