@@ -26,7 +26,7 @@ comments: false
 <br>
 
 ## 2.Datasets 
-남녀 구분 모델에 필요한 데이터 셋은 남자와 여자 사진입니다. kaggle에서 이미 있는 이미지 데이터 셋을 구할 수 있었지만 조원들끼리 직접 이미지를 모아 불필요한 이미지를 따로 처리하여 데이터 셋을 만들고자 하였습니다. 최대한 다양한 인종과 나이대에 대해 적용시킬 수 있게 조원간에 이미지 수집분야를 나눴습니다. 
+남녀 구분 모델에 필요한 데이터 셋은 남자와 여자 사진입니다. kaggle에서 이미지 데이터 셋을 구할 수 있었지만 조원들끼리 직접 이미지를 수집하고 처리하여 데이터 셋을 만들고자 하였습니다. 또한 최대한 다양한 인종과 나이대에 대해 적용시킬 수 있게 조원간에 이미지 수집 분야를 나눴습니다. 
 ```
 김덕성 : 초등 ~ 청소년
 김아영 : 아이돌 배우 (국내 위주)
@@ -36,7 +36,7 @@ comments: false
 <br>
 
 ### 이미지 크롤링
-이미지 수집은 구글 크롤링을 통하여 수집을 하였고 크롤링에 필요한 툴을 <a href="https://github.com/Joeclinton1/google-images-download.git" target="_blank">github</a>에서 다운받아 실행하였습니다. 개발환경은 구글코랩이며 크롤링하는 코드는 다음과 같습니다.
+이미지 수집은 구글 크롤링을 통하여 수집을 하였고 크롤링에 필요한 툴은 <a href="https://github.com/Joeclinton1/google-images-download.git" target="_blank">https://github.com/Joeclinton1/google-images-download.git</a>에서 다운받아 실행하였습니다. 개발환경은 구글코랩이며 크롤링하는 코드는 다음과 같습니다.
 
 ```python
 !git clone https://github.com/Joeclinton1/google-images-download.git
@@ -51,7 +51,7 @@ arguments = {"keywords":"male,female","limit":100,"print_urls":False}
 paths = response.download(arguments)  
 
 ```
-크롤링된 데이터에서 학습에 적합하지 못한 사진들은 직접 수작업으로 제거했습니다. 
+크롤링된 데이터를 확인해보고 사람이 아닌 사진과 같이 학습에 적합하지 못한 사진들은 직접 수작업으로 제거했습니다. 
 
 <br>
 
@@ -84,11 +84,11 @@ plt.hist(width, bins = 100)
 ```
 <img src = "https://JS-hub.github.io\assets\img\study\all_width.png" >
 
-**<p style="text-align: center;" >그림1.  전체 사진의 가로길이 분포<p>**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림1.  전체 사진의 가로길이 분포**
 
 <img src = "https://JS-hub.github.io\assets\img\study\all_height.png" >
 
-**<p style="text-align: center;" >그림2. 전체 사진의 세로길이 분포<p>**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림2. 전체 사진의 세로길이 분포**
 
 분포를 본 결과 가로는 400 세로는 300을 중심으로 모여있는 것을 확인하였고 모든 사진을 (400,300)으로 리사이즈를 하기로 하였습니다. 리사이즈하는 코드는 다음과 같습니다.
 ```python
@@ -120,10 +120,10 @@ for path in paths:
 얼굴 사진만을 다시 데이터셋으로 구성한 이유는 **case1)** 에서 모든 사진을 포함한 모델을 학습시켰을 때 정확도가 잘 나오지 않아서 조원끼리 상의해 본 결과 모은 사진이 너무 다양하여 사진의 Feature를 제대로 학습하지 못하였다고 판단하였습니다. 그래서 얼굴 사진으로 통일하여 다시 학습시키기 위하여 얼굴 사진만으로 이루어진 데이터셋을 만들었습니다. 
 <img src = "https://JS-hub.github.io\assets\img\study\face_width.png" >
 
-**<p style="text-align: center;" >그림3. 얼굴 사진의 가로길이 분포<p>**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림3. 얼굴 사진의 가로길이 분포**
 <img src = "https://JS-hub.github.io\assets\img\study\face_height.png" >
 
-**<p style="text-align: center;" >그림4. 얼굴 사진의 세로길이 분포<p>**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림4. 얼굴 사진의 세로길이 분포**
 
 얼굴사진 크기의 분포를 본 결과 가로는 220에 세로는 200을 중심으로 모여있었습니다. 하지만 전체 사진으로 학습한 모델과 비교하기 위해 **case1)** 과 같이 (400,300)으로리사이즈 해주기로 했습니다. 
 <br>
