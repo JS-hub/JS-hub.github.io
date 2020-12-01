@@ -41,7 +41,7 @@ comments: false
 
 
 ### 이미지 크롤링
-이미지 수집은 구글 크롤링을 통하여 수집을 하였고 크롤링에 필요한 툴은 <a href="https://github.com/Joeclinton1/google-images-download.git" target="_blank">https://github.com/Joeclinton1/google-images-download.git</a>에서 다운받아 실행하였습니다. 개발환경은 구글코랩이며 크롤링하는 코드는 다음과 같습니다.
+이미지는 구글 크롤링을 통하여 수집을 하였고 크롤링에 필요한 툴은 <a href="https://github.com/Joeclinton1/google-images-download.git" target="_blank">https://github.com/Joeclinton1/google-images-download.git</a>에서 클론하여 실행하였습니다. 개발환경은 구글코랩이며 크롤링하는 코드는 다음과 같습니다.
 
 ```python
 !git clone https://github.com/Joeclinton1/google-images-download.git
