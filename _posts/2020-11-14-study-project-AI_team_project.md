@@ -202,7 +202,7 @@ X_test, Y_test = output[2], output[3]
 ---
 사용할 모델은 CNN을 기반으로 하는 VGGNET에 Batch Normalization을 추가하였으며 손실함수는 Cross-entropy를 사용하였고 최적화함수는 Adamoptimizer를 사용하였습니다. Model을 구성할 것입니다. 모델 구현에 앞서 모델이 어떤 방식으로 훈련하는지 설명드리겠습니다.
 ## CNN(Convolutional Neural network)
-기존의 DNN에서는 이미지를 1D 형태로 펴주어서 집어넣었는데요 이런 방법은 데이터를 변경하는 과정에서 공간적인 정보의 손실이 생깁니다. 그래서 기존 신경망이 특징을 추출하고 학습하는데 있어서 한계가 발생하게 됩니다. 이러한 단점을 보완하여 이미지의 공간정보를 유지한채로 학습하는 모델이 CNN입니다.
+기존의 DNN에서는 이미지를 1D 형태로 펴주었는데요. 이런 방법은 데이터를 변경하는 과정에서 공간적인 정보의 손실이 생깁니다. 그래서 기존 신경망이 특징을 추출하고 학습하는데 있어서 한계가 발생하게 됩니다. 이러한 단점을 보완하여 이미지의 공간정보를 유지한채로 학습하는 모델이 CNN입니다.
 ![image](https://JS-hub.github.io\assets\img\study\CNN.png)
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림5. CNN의 구조**
 
@@ -211,7 +211,7 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 ![image](https://JS-hub.github.io\assets\img\study\convolution.gif)
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림6. Convolution 예시 이미지**
 
-그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 `Feature`를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값(**그림6**의 빨간 숫자)을 이미지에 곱연산하여 특징을 추출하는 것입니다. 이렇게 생성된 이미지를 'Feature map'이라고 합니다. **그림 6**에서 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직이면서 진행됩니다. 이것을 `stride`라고 하며 이때는 `stride`가 1입니다.
+그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 `Feature`를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값(**그림6**의 빨간 숫자)을 이미지에 곱연산하여 특징을 추출하는 것입니다. 이렇게 생성된 이미지를 'Feature map'이라고 합니다. **그림 6**에서 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직이면서 진행됩니다. 이처럼 지정된 간격으로 필터가 이미지를 순회하는 간격을 `stride`라고 하며 이때는 `stride`가 1입니다.
 
 ### Channel 
 <img src = "https://pbs.twimg.com/media/DqaynZSVAAASsgl.jpg">
@@ -227,6 +227,122 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 <img src = "https://JS-hub.github.io\assets\img\study\padding.png">
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림8. Padding 예시 이미지**
+
+**그림8**과 같이 0으로 둘러싸는 `padding`을 `zero padding`이라고 합니다. 이미지의 모든 방향으로 한 픽셀만큼 0을 채워주면 `3X3`필터를 통과해도 `Feature map`의 크기가 줄어들지 않습니다. 만약 `5X5`크기의 필터를 사용하게 된다면 모든 방향으로 두 픽셀만큼 채워줘야겠죠? 
+
+### Pooling
+이미지의 크기를 계속 유지하면서 레이어를 늘리면 연산량이 엄청 늘어날 것입니다. 그래서 크기를 줄이면서 `Feature map`의 대표값만 뽑아내는 것을 `pooling`이라고 합니다. 
+<img src = "https://JS-hub.github.io\assets\img\study\pooling.png">
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림9. Max Pooling 예시 이미지**
+
+**그림9**는 `Maxpooling`을 보여주는 이미지 입니다. `2X2`크기의 필터에 `stride`를 2로 적용시켰을 때 필터에 영역에 해당하는 값 중에 가장 큰 값만은 뽑아 내는 것입니다. 평균 값을 뽑아내는 경우 `Average pooling` 이라고 합니다. 이미지 분류에서는 주로 `MaxPooling`을 사용합니다.
+
+### Batch Normalization
+
+### VGGNet
+VGGNet은 2014년 ImageNet이라는 1000개의 이미지를 구별하는 대회에서 좋은 성적을 낸 모델입니다. 
+
+<img src = "https://JS-hub.github.io\assets\img\study\VGGNet.png">
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림10. VGGNet layer 구성표**
+
+저희의 경우 13layer모델을 기준으로 만들었습니다. input이미지의 크기가 400x300으로 더 크지만 Convolution layer에서 Filter의 크기가 작을 수록 특징을 잡기에 좋다는 점 때문에 Convolution layer는 그대로 유지하였습니다. 하지만 구별해야하는 것이 1000개인 반면 저희 모델은 2개만 구분하면 됐기 때문에 classificaion layer의 노드 수를 256으로 조정했습니다.
+
+### Cross-entropy
+
+### Adam Optimmizer
+
+## 모델구현 
+```python
+import tensorflow.compat.v1 as tf # 텐서플로우 버전 1을 사용
+tf.disable_v2_behavior() 
+
+X = tf.placeholder(tf.float32, [None,400,300,3])
+Y = tf.placeholder(tf.float32,[None,2])
+keep_prob = tf.placeholder(tf.float32)
+is_training = tf.placeholder(tf.bool)
+
+W1 = tf.Variable(tf.random_normal([3,3,3,64],stddev=0.01)) 
+L1 = tf.nn.conv2d(X,W1, strides=[1,1,1,1],padding = 'SAME') 
+L1 = tf.layers.batch_normalization(L1, training = is_training)
+L1 = tf.nn.relu(L1)
+# 400 300  64 
+
+W2 = tf.Variable(tf.random_normal([3,3,64,64],stddev=0.01))
+L2 = tf.nn.conv2d(L1,W2, strides =[1,1,1,1],padding = 'SAME') 
+L2 = tf.layers.batch_normalization(L2, training = is_training)
+L2 = tf.nn.relu(L2)
+L2 = tf.nn.max_pool(L2,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
+# 200 150 64
+
+W3 = tf.Variable(tf.random_normal([3,3,64,128],stddev=0.01))
+L3 = tf.nn.conv2d(L2,W3, strides =[1,1,1,1],padding = 'SAME') 
+L3 = tf.layers.batch_normalization(L3, training = is_training)
+L3 = tf.nn.relu(L3)
+
+W4 = tf.Variable(tf.random_normal([3,3,128,128],stddev=0.01)) 
+L4 = tf.nn.conv2d(L3,W4, strides=[1,1,1,1],padding = 'SAME') 
+L = tf.layers.batch_normalization(L4, training = is_training)
+L4 = tf.nn.relu(L4)
+L4 = tf.nn.max_pool(L4,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME') 
+#100 75 128
+
+W5 = tf.Variable(tf.random_normal([3,3,128,256],stddev=0.01))
+L5 = tf.nn.conv2d(L4,W5, strides =[1,1,1,1],padding = 'SAME') 
+L5 = tf.layers.batch_normalization(L5, training = is_training)
+L5 = tf.nn.relu(L5)
+
+W6 = tf.Variable(tf.random_normal([3,3,256,256],stddev=0.01))
+L6 = tf.nn.conv2d(L5,W6, strides =[1,1,1,1],padding = 'SAME') 
+L6 = tf.layers.batch_normalization(L6, training = is_training)
+L6 = tf.nn.relu(L6)
+L6 = tf.nn.max_pool(L6,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
+# 50 38 256 
+
+W7 = tf.Variable(tf.random_normal([3,3,256,512],stddev=0.01))
+L7 = tf.nn.conv2d(L6,W7, strides =[1,1,1,1],padding = 'SAME') 
+L7 = tf.layers.batch_normalization(L7, training = is_training)
+L7 = tf.nn.relu(L7)
+
+W8 = tf.Variable(tf.random_normal([3,3,512,512],stddev=0.01))
+L8 = tf.nn.conv2d(L7,W8, strides =[1,1,1,1],padding = 'SAME') 
+L8 = tf.layers.batch_normalization(L8, training = is_training)
+L8 = tf.nn.relu(L8)
+L8 = tf.nn.max_pool(L8,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
+# 25 19 512
+
+W9 = tf.Variable(tf.random_normal([3,3,512,512],stddev=0.01))
+L9 = tf.nn.conv2d(L8,W9, strides =[1,1,1,1],padding = 'SAME') 
+L9 = tf.layers.batch_normalization(L9, training = is_training)
+L9 = tf.nn.relu(L9)
+
+W10 = tf.Variable(tf.random_normal([3,3,512,512],stddev=0.01))
+L10 = tf.nn.conv2d(L9,W10, strides =[1,1,1,1],padding = 'SAME') 
+L10 = tf.layers.batch_normalization(L10, training = is_training)
+L10 = tf.nn.relu(L10)
+L10 = tf.nn.max_pool(L10,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
+# 13 10 512
+
+W11 = tf.Variable(tf.random_normal([13*10*512,256],stddev=0.01))
+L11 = tf.reshape(L10,[-1,13*10*512])
+L11 = tf.matmul(L11,W11)
+L11 = tf.nn.relu(L11)
+L11 = tf.nn.dropout(L11, keep_prob)
+
+W12 = tf.Variable(tf.random_normal([256,256],stddev=0.01))
+L12 = tf.matmul(L11,W12)
+L12 = tf.nn.relu(L12)
+L12 = tf.nn.dropout(L12, keep_prob)
+
+W13 = tf.Variable(tf.random_normal([256,2],stddev=0.01))
+model = tf.matmul(L12,W13)
+
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=model, labels=Y))
+update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+with tf.control_dependencies(update_ops):
+    optimizer = tf.train.AdamOptimizer(0.001).minimize(cost)
+```
 
 ## Evaluate 
 ---
