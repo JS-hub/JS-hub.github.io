@@ -21,6 +21,8 @@ comments: false
   - #### 3-2 모델구현
 - #### 4.Evaluation & Disscussion
   - #### 4-1 모델평가 
+- #### 5.Appendix
+  - #### 5-1 전처리 시행착오 
 
 <br>
 
@@ -88,11 +90,11 @@ plt.hist(width, bins = 100)
 ```
 <img src = "https://JS-hub.github.io\assets\img\study\all_width.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림1.  전체 사진의 가로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림1.  전체 사진의 가로길이 분포**
 
 <img src = "https://JS-hub.github.io\assets\img\study\all_height.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림2. 전체 사진의 세로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림2. 전체 사진의 세로길이 분포**
 
 분포를 본 결과 가로는 400 세로는 300을 중심으로 모여있는 것을 확인하였고 모든 사진을 (400,300)으로 리사이즈를 하기로 하였습니다. 리사이즈하는 코드는 다음과 같습니다.
 ```python
@@ -124,10 +126,10 @@ for path in paths:
 얼굴 사진만을 다시 데이터셋으로 구성한 이유는 **case1)** 에서 모든 사진을 포함한 모델을 학습시켰을 때 정확도가 잘 나오지 않아서 조원끼리 상의해 본 결과 모은 사진이 너무 다양하여 사진의 Feature를 제대로 학습하지 못하였다고 판단하였습니다. 그래서 얼굴 사진으로 통일하여 다시 학습시키기 위하여 얼굴 사진만으로 이루어진 데이터셋을 만들었습니다. 
 <img src = "https://JS-hub.github.io\assets\img\study\face_width.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림3. 얼굴 사진의 가로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림3. 얼굴 사진의 가로길이 분포**
 <img src = "https://JS-hub.github.io\assets\img\study\face_height.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림4. 얼굴 사진의 세로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림4. 얼굴 사진의 세로길이 분포**
 
 얼굴사진 크기의 분포를 본 결과 가로는 220에 세로는 200을 중심으로 모여있었습니다. 하지만 전체 사진으로 학습한 모델과 비교하기 위해 **case1)** 과 같이 (400,300)으로리사이즈 해주기로 했습니다. 
 <br>
@@ -199,10 +201,73 @@ X_test, Y_test = output[2], output[3]
 ## Model 
 ---
 사용할 모델은 CNN을 기반으로 하는 VGGNET에 Batch Normalization을 추가하였으며 손실함수는 Cross-entropy를 사용하였고 최적화함수는 Adamoptimizer를 사용하였습니다. Model을 구성할 것입니다. 모델 구현에 앞서 모델이 어떤 방식으로 훈련하는지 설명드리겠습니다.
+## CNN(Convolutional Neural network)
+![image](https://JS-hub.github.io\assets\img\study\CNN.png)
 
+![image](https://JS-hub.github.io\assets\img\study\convolution.gif)
 
 ## Evaluate 
 
 <br>
 
 ## Disscussion
+
+## Appendix 
+### 전처리 시행착오: 워터마크 제거
+이미지 크롤링을 통해 데이터를 수집하는 과정에서 크롤링한 사진 중 다수의 파일에 저작권 표시를 위한 워터마크가 삽이되어 있었습니다. 워터마크가 있으면 불필요한 Feature가 검출되고 이것이 모델이 학습하는데에 문제를 줄 것이라고 판단하였고 워터마크를 지우거나 워터마크가 심한 파일을 삭제하기로 하였습니다. 
+#### 1. 이미지 임계처리 
+- 이미지를 흑/백으로 분류하여 처리하는 이진화를 이용해 워터마크를 제거하는 방법입니다. 이때 기준이 되는 임계값을 어떻게 결정할 것인지가 중요합니다. 임계값보다 크면 백, 작으면 흑으로 처리됩니다. 
+<br>
+- Simple thresholding: 사용자가 고정된 임계값을 결정하고 그 결과를 보여주는 단순한 형태입니다.
+
+``` python
+img = cv2.imread('/content/drive/MyDrive/Colab Notebooks/femaleTeenager1.jpg',0)
+
+# ret에는 임계값이 할당되며 thresh에는 thresholding된 이미지가 할당됩니다.
+ret, thresh1 = cv2.threshold(img,150,255, cv2.THRESH_BINARY)
+ret, thresh2 = cv2.threshold(img,150,255, cv2.THRESH_BINARY_INV)
+ret, thresh3 = cv2.threshold(img,150,255, cv2.THRESH_TRUNC)
+ret, thresh4 = cv2.threshold(img,150,255, cv2.THRESH_TOZERO)
+ret, thresh5 = cv2.threshold(img,150,255, cv2.THRESH_TOZERO_INV)
+
+titles =['Original','BINARY','BINARY_INV','TRUNC','TOZERO','TOZERO_INV']
+images = [img,thresh1,thresh2,thresh3,thresh4,thresh5]
+
+for i in range(6):
+    plt.subplot(2,3,i+1),plt.imshow(images[i],'gray')
+    plt.title(titles[i])
+    plt.xticks([]),plt.yticks([])
+    
+plt.show()
+```
+
+<img src = "https://JS-hub.github.io\assets\img\study\simple_th.png" >
+
+
+- Adaptive thresholding: 이미지의 작은 영역별로 thresholding 하는 방법입니다. 정해준 임의의 값이 아닌 bookSize*bookSize에서 구할 수 있기 때문에 더 정확하게 threshold를 적용할 수 있습니다. 
+
+```python
+img = cv2.imread('/content/drive/MyDrive/Colab Notebooks/femaleTeenager1.jpg',0)
+
+ret, th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
+th2 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,15,2)
+th3 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,15,2)
+cv2.imwrite("D:\\test1\\nonwatermarkTest_6.jpg",th1)
+cv2.imwrite("D:\\test1\\nonwatermarkTest_7.jpg",th2)
+cv2.imwrite("D:\\test1\\nonwatermarkTest_8.jpg",th3)
+
+titles = ['Original','Global','Mean','Gaussian']
+
+images = [img,th1,th2,th3]
+
+for i in range(4):
+    plt.subplot(2,3,i+1),plt.imshow(images[i],'gray')
+    plt.title(titles[i])
+    plt.xticks([]),plt.yticks([])
+
+plt.show()
+```
+<img src = "https://JS-hub.github.io\assets\img\study\adaptive_th.png" >
+
+#### 한계
+Binary와 Global에서 변환된 이미지를 보면 Thresholding으로 워터마크를 제거할 수 잇지만 원본 이미지가 손상된다는 것을 알 수있었습니다. 따라서 Thresholding을 통한 워터마크 제거는 적합하지 않다고 판단했습니다.
