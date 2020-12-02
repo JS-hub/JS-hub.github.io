@@ -131,7 +131,7 @@ for path in paths:
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림4. 얼굴 사진의 세로길이 분포**
 
-얼굴사진 크기의 분포를 본 결과 가로는 220에 세로는 200을 중심으로 모여있었습니다. 하지만 전체 사진으로 학습한 모델과 비교하기 위해 **case1)** 과 같이 (400,300)으로리사이즈 해주기로 했습니다. 
+얼굴사진 크기의 분포를 본 결과 가로는 220에 세로는 200을 중심으로 모여있었습니다. 하지만 전체 사진으로 학습한 모델과 비교하기 위해 **case1)**과 같이 (400,300)으로리사이즈 해주기로 했습니다. 
 <br>
 
 ### 사진 라벨링
@@ -209,14 +209,32 @@ X_test, Y_test = output[2], output[3]
 CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. FeatureExtraction layer의 경우 Convolution layer와 Pooling Layer로 이루어져 있으며 Classification layer는 Fully-Connected layer(완전 연결 계층)으로 이루어져있습니다. 
 ### Convolution
 ![image](https://JS-hub.github.io\assets\img\study\convolution.gif)
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림6. Convolution**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림6. Convolution 예시 이미지**
 
-그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 Feature를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값을 이미지에 적용시켜 특징을 추출하는 것입니다. 이때 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직입니다. 이것을 stride라고 하며 이때는 stride가 1입니다.
+그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 `Feature`를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값(**그림6**의 빨간 숫자)을 이미지에 곱연산하여 특징을 추출하는 것입니다. 이렇게 생성된 이미지를 'Feature map'이라고 합니다. **그림 6**에서 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직이면서 진행됩니다. 이것을 `stride`라고 하며 이때는 `stride`가 1입니다.
+
+### Channel 
+<img src = "https://pbs.twimg.com/media/DqaynZSVAAASsgl.jpg">
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림7. color 이미지**
+
+
+**그림7**과 같은 color이미지는 Red channel,Blue Channel,Green Channel이 합쳐진 3채널 이미지 입니다. 즉 하나의 color 이미지는 3개의 채널로 이루어져있습니다. 흑백사진의 경우는 1채널입니다.
+
+### Padding 
+**그림6**을 보면 특징을 추출하기 전의 이미지는 `5x5`의 크기였지만 `3x3`의 필터를 통해 추출한 'Feature map'의 크기는 `3x3`이 되었습니다. 이처럼 출력 데이터가 입력데이터 보다 작아지는데요. 이를 방지하는 방법이 `padding`입니다.
+
+<img src = "https://JS-hub.github.io\assets\img\study\padding.png">
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림8. Padding 예시 이미지**
+
 ## Evaluate 
+---
 
 <br>
 
 ## Disscussion
+---
 
 ## Appendix 
 ---
