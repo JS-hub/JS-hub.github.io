@@ -124,7 +124,10 @@ for path in paths:
 
 ### Case2) 얼굴사진만을 포함한 사람사진
 얼굴 사진만을 다시 데이터셋으로 구성한 이유는 **case1)** 에서 모든 사진을 포함한 모델을 학습시켰을 때 정확도가 잘 나오지 않아서 조원끼리 상의해 본 결과 모은 사진이 너무 다양하여 사진의 Feature를 제대로 학습하지 못하였다고 판단하였습니다. 그래서 얼굴 사진으로 통일하여 다시 학습시키기 위하여 얼굴 사진만으로 이루어진 데이터셋을 만들었습니다. 
-<img src = "https://JS-hub.github.io\assets\img\study\face_width.png" >
+
+![image](https://JS-hub.github.io\assets\img\study\face_width.png){: .align-left}
+![image](https://JS-hub.github.io\assets\img\study\face_height.png){: .align-right}
+
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림3. 얼굴 사진의 가로길이 분포**
 <img src = "https://JS-hub.github.io\assets\img\study\face_height.png" >
