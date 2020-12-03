@@ -208,7 +208,7 @@ X_test, Y_test = output[2], output[3]
 
 ## 3.Model 
 ---
-사용할 모델은 CNN을 기반으로 하는 VGGNET에 Batch Normalization을 추가하였으며 손실함수는 Cross-entropy를 사용하였고 최적화함수는 Adamoptimizer를 사용하였습니다. Model을 구성할 것입니다. 모델 구현에 앞서 모델이 어떤 방식으로 훈련하는지 설명드리겠습니다.
+사용할 모델은 CNN을 기반으로 하는 VGGNET에 Batch Normalization을 추가하였으며 손실함수는 Cross-entropy를 사용하였고 최적화함수는 Adamoptimizer를 사용하였습니다. 모델 구현에 앞서 모델이 어떤 방식으로 훈련하는지 설명드리겠습니다.
 ## CNN(Convolutional Neural network)
 기존의 DNN에서는 이미지를 1D 형태로 펴주었는데요. 이런 방법은 데이터를 변경하는 과정에서 공간적인 정보의 손실이 생깁니다. 그래서 기존 신경망이 특징을 추출하고 학습하는데 있어서 한계가 발생하게 됩니다. 이러한 단점을 보완하여 이미지의 공간정보를 유지한채로 학습하는 모델이 CNN입니다.
 ![image](https://JS-hub.github.io\assets\img\study\CNN.png)
@@ -219,7 +219,7 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 ![image](https://JS-hub.github.io\assets\img\study\convolution.gif)
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림6. Convolution 예시 이미지**
 
-그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 `Feature`를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값(**그림6**의 빨간 숫자)을 이미지에 곱연산하여 특징을 추출하는 것입니다. 이렇게 생성된 이미지를 'Feature map'이라고 합니다. **그림 6**에서 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직이면서 진행됩니다. 이처럼 지정된 간격으로 필터가 이미지를 순회하는 간격을 `stride`라고 하며 이때는 `stride`가 1입니다.
+그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 `Feature`를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값(**그림6**의 빨간 숫자)을 이미지에 곱연산하여 특징을 추출하는 것입니다. 이렇게 생성된 이미지를 `Feature map`이라고 합니다. **그림 6**에서 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직이면서 진행됩니다. 이처럼 지정된 간격으로 필터가 이미지를 순회하는 간격을 `stride`라고 하며 이때는 `stride`가 1입니다.
 
 ### Channel 
 
@@ -230,7 +230,7 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 **그림7**과 같은 color이미지는 Red channel,Blue Channel,Green Channel이 합쳐진 3채널 이미지 입니다. 즉 하나의 color 이미지는 3개의 채널로 이루어져있습니다. 흑백사진의 경우는 1채널입니다.
 
 ### Padding 
-**그림6**을 보면 특징을 추출하기 전의 이미지는 `5x5`의 크기였지만 `3x3`의 필터를 통해 추출한 'Feature map'의 크기는 `3x3`이 되었습니다. 이처럼 출력 데이터가 입력데이터 보다 작아지는데요. 이를 방지하는 방법이 `padding`입니다.
+**그림6**을 보면 특징을 추출하기 전의 이미지는 `5x5`의 크기였지만 `3x3`의 필터를 통해 추출한 `Feature map`의 크기는 `3x3`이 되었습니다. 이처럼 출력 데이터가 입력데이터 보다 작아지는데요. 이를 방지하는 방법이 `padding`입니다.
 
 <img src = "https://JS-hub.github.io\assets\img\study\padding.png">
 
@@ -246,6 +246,8 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 
 **그림9**는 `Maxpooling`을 보여주는 이미지 입니다. `2X2`크기의 필터에 `stride`를 2로 적용시켰을 때 필터에 영역에 해당하는 값 중에 가장 큰 값만은 뽑아 내는 것입니다. 평균 값을 뽑아내는 경우 `Average pooling` 이라고 합니다. 이미지 분류에서는 주로 `MaxPooling`을 사용합니다.
 
+이렇게 풀링층을 빠져 나온 `feature map`을 펴주어 Fully connected layer에 넣어 분류를 합니다.  
+
 ### VGGNet
 VGGNet은 2014년 ImageNet이라는 1000개의 이미지를 구별하는 대회에서 좋은 성적을 낸 모델입니다. 
 
@@ -253,12 +255,12 @@ VGGNet은 2014년 ImageNet이라는 1000개의 이미지를 구별하는 대회�
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림10. VGGNet layer 구성표**
 
-저희의 경우 13layer모델을 기준으로 만들었습니다. input이미지의 크기가 400x300으로 더 크지만 Convolution layer에서 Filter의 크기가 작을 수록 특징을 잡기에 좋다는 점 때문에 Convolution layer는 그대로 유지하였습니다. 하지만 구별해야하는 것이 1000개인 반면 저희 모델은 2개만 구분하면 됐기 때문에 classificaion layer의 노드 수를 256으로 조정했습니다.
+저희의 경우 13layer모델을 기준으로 만들었습니다. input이미지의 크기가 400x300으로 더 크지만 Convolution layer에서 Filter의 크기가 작을 수록 특징을 잡기에 좋다는 점 때문에 Convolution layer는 그대로 유지하였습니다. 하지만 구별해야하는 것이 1000개인 반면 저희 모델은 2개만 구분하면 됐기 때문에 classificaion layer의 노드 수를 4096개에서 256으로 1000에서 2로 바꿨습니다.
 
 
 ### Batch Normalization
 Batch란 전체 데이터에서 일부분을 칭하는 단어 입니다. 신경망을 학습시킬 때 전체 데이터를 한 번에 학습시키지 않고 조그만 단위로 분할해서 학습을 시키는데 이 단위를 Batch라고 합니다.
-Bathc Normalization이 필요한 이유는 깊은 신경망일 수록 같은 Input값을 갖더라도 가중치에 따라 완전히 다른 값을 얻을 수 있습니다. 이를 해결하기 위해 각 층의 출력 값에 Batch Normalization을 통해 가중치의 차이를 완화해줍니다.
+Batch Normalization이 필요한 이유는 깊은 신경망일 수록 같은 Input값을 갖더라도 가중치가 업데이트 되면서 다른분포를 가지게 됩니다. 이를 해결하기 위해 각 층의 출력 값에 Batch Normalization을 통해 가중치의 차이를 완화해줍니다.
 Batch Normalization을 통해 얻는 효과는 다음과 같습니다.
 - 학습 속도가 개선된다.
 - 가중치 초기값의 의존성이 적어진다.
