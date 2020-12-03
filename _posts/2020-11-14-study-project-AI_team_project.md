@@ -199,7 +199,8 @@ for i in range(len(output)):
 X_train, Y_train = output[0], output[1] 
 X_test, Y_test = output[2], output[3]
 ```
-| |train data|test data|
+
+|-|train data|test data|
 |------|---|---|
 |case1|3390개|1452개|
 |case2|2442개|1048개|
