@@ -93,11 +93,11 @@ plt.hist(width, bins = 100)
 ```
 <img src = "https://JS-hub.github.io\assets\img\study\all_width.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림1.  전체 사진의 가로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림1.  전체 사진의 가로길이 분포**
 
 <img src = "https://JS-hub.github.io\assets\img\study\all_height.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림2. 전체 사진의 세로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림2. 전체 사진의 세로길이 분포**
 
 분포를 본 결과 가로는 400 세로는 300을 중심으로 모여있는 것을 확인하였고 모든 사진을 (400,300)으로 리사이즈를 하기로 하였습니다. 리사이즈하는 코드는 다음과 같습니다.
 ```python
@@ -129,10 +129,10 @@ for path in paths:
 얼굴 사진만을 다시 데이터셋으로 구성한 이유는 **case1)** 에서 모든 사진을 포함한 모델을 학습시켰을 때 정확도가 잘 나오지 않아서 조원끼리 상의해 본 결과 모은 사진이 너무 다양하여 사진의 Feature를 제대로 학습하지 못하였다고 판단하였습니다. 그래서 얼굴 사진으로 통일하여 다시 학습시키기 위하여 얼굴 사진만으로 이루어진 데이터셋을 만들었습니다. 
 <img src = "https://JS-hub.github.io\assets\img\study\face_width.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림3. 얼굴 사진의 가로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림3. 얼굴 사진의 가로길이 분포**
 <img src = "https://JS-hub.github.io\assets\img\study\face_height.png" >
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림4. 얼굴 사진의 세로길이 분포**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림4. 얼굴 사진의 세로길이 분포**
 
 얼굴사진 크기의 분포를 본 결과 가로는 220에 세로는 200을 중심으로 모여있었습니다. 하지만 전체 사진으로 학습한 모델과 비교하기 위해 **case1)**과 같이 (400,300)으로리사이즈 해주기로 했습니다. 
 <br>
@@ -212,19 +212,19 @@ X_test, Y_test = output[2], output[3]
 ## CNN(Convolutional Neural network)
 기존의 DNN에서는 이미지를 1D 형태로 펴주었는데요. 이런 방법은 데이터를 변경하는 과정에서 공간적인 정보의 손실이 생깁니다. 그래서 기존 신경망이 특징을 추출하고 학습하는데 있어서 한계가 발생하게 됩니다. 이러한 단점을 보완하여 이미지의 공간정보를 유지한채로 학습하는 모델이 CNN입니다.
 ![image](https://JS-hub.github.io\assets\img\study\CNN.png)
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림5. CNN의 구조**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림5. CNN의 구조**
 
 CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. FeatureExtraction layer의 경우 Convolution layer와 Pooling Layer로 이루어져 있으며 Classification layer는 Fully-Connected layer(완전 연결 계층)으로 이루어져있습니다. 
 ### Convolution
 ![image](https://JS-hub.github.io\assets\img\study\convolution.gif)
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림6. Convolution 예시 이미지**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림6. Convolution 예시 이미지**
 
 그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 `Feature`를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값(**그림6**의 빨간 숫자)을 이미지에 곱연산하여 특징을 추출하는 것입니다. 이렇게 생성된 이미지를 'Feature map'이라고 합니다. **그림 6**에서 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직이면서 진행됩니다. 이처럼 지정된 간격으로 필터가 이미지를 순회하는 간격을 `stride`라고 하며 이때는 `stride`가 1입니다.
 
 ### Channel 
 
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림7. color 이미지**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림7. color 이미지**
 
 
 **그림7**과 같은 color이미지는 Red channel,Blue Channel,Green Channel이 합쳐진 3채널 이미지 입니다. 즉 하나의 color 이미지는 3개의 채널로 이루어져있습니다. 흑백사진의 경우는 1채널입니다.
@@ -234,7 +234,7 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 
 <img src = "https://JS-hub.github.io\assets\img\study\padding.png">
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림8. Padding 예시 이미지**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림8. Padding 예시 이미지**
 
 **그림8**과 같이 0으로 둘러싸는 `padding`을 `zero padding`이라고 합니다. 이미지의 모든 방향으로 한 픽셀만큼 0을 채워주면 `3X3`필터를 통과해도 `Feature map`의 크기가 줄어들지 않습니다. 만약 `5X5`크기의 필터를 사용하게 된다면 모든 방향으로 두 픽셀만큼 채워줘야겠죠? 
 
@@ -242,7 +242,7 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 이미지의 크기를 계속 유지하면서 레이어를 늘리면 연산량이 엄청 늘어날 것입니다. 그래서 크기를 줄이면서 `Feature map`의 대표값만 뽑아내는 것을 `pooling`이라고 합니다. 
 <img src = "https://JS-hub.github.io\assets\img\study\pooling.png">
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림9. Max Pooling 예시 이미지**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림9. Max Pooling 예시 이미지**
 
 **그림9**는 `Maxpooling`을 보여주는 이미지 입니다. `2X2`크기의 필터에 `stride`를 2로 적용시켰을 때 필터에 영역에 해당하는 값 중에 가장 큰 값만은 뽑아 내는 것입니다. 평균 값을 뽑아내는 경우 `Average pooling` 이라고 합니다. 이미지 분류에서는 주로 `MaxPooling`을 사용합니다.
 
@@ -251,7 +251,7 @@ VGGNet은 2014년 ImageNet이라는 1000개의 이미지를 구별하는 대회�
 
 <img src = "https://JS-hub.github.io\assets\img\study\VGGNet.png">
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림10. VGGNet layer 구성표**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림10. VGGNet layer 구성표**
 
 저희의 경우 13layer모델을 기준으로 만들었습니다. input이미지의 크기가 400x300으로 더 크지만 Convolution layer에서 Filter의 크기가 작을 수록 특징을 잡기에 좋다는 점 때문에 Convolution layer는 그대로 유지하였습니다. 하지만 구별해야하는 것이 1000개인 반면 저희 모델은 2개만 구분하면 됐기 때문에 classificaion layer의 노드 수를 256으로 조정했습니다.
 
@@ -266,14 +266,15 @@ Batch Normalization을 통해 얻는 효과는 다음과 같습니다.
 
 ### Cross-entropy
 실제값과 예측값 사이의 차이를 계산한 값으로 실제 분포가 q이고 예측 모델링을 통해 구한 분포가 p라할 때 cross-entropy는 아래와 같이 정의됩니다. 
+
 $$ -\sum_{c=1}^{C}q_clog(p_c), -\frac 1 n\sum_{i=1}^{n} \sum_{c=1}^{C}q_{ic}log(p_{ic})$$
 
 ### Adam Optimmizer
 <img src = "https://JS-hub.github.io\assets\img\study\optimizer.png">
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림10. optimizer 발전 과정**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림11. optimizer 발전 과정**
 
-Adam Optimizer가 다른 Optimizer들에 비해 좋은 성능을 내고 있기 때문에 Adam Optimizer를 사용했습니다.
+**그림 11**을 통해 Optimizer가 어떤식으로 발전했는지 대략적인 느낌은 알 수 있었습니다. 현재 Adam Optimizer가 다른 Optimizer들에 비해 좋은 성능을 내고 있기 때문에 Adam Optimizer를 사용했습니다.
 
 ## 모델구현 
 ```python
@@ -421,7 +422,7 @@ print(f'정확도 : {total_acc/total_t_batch}')
 ---
 ### 전처리 시행착오: 워터마크 제거
 이미지 크롤링을 통해 데이터를 수집하는 과정에서 크롤링한 사진 중 다수의 파일에 저작권 표시를 위한 워터마크가 삽이되어 있었습니다. 워터마크가 있으면 불필요한 Feature가 검출되고 이것이 모델이 학습하는데에 문제를 줄 것이라고 판단하였고 워터마크를 지우거나 워터마크가 심한 파일을 삭제하기로 하였습니다. 
-#### 1. 이미지 임계처리 
+#### 이미지 임계처리 
 - 이미지를 흑/백으로 분류하여 처리하는 이진화를 이용해 워터마크를 제거하는 방법입니다. 이때 기준이 되는 임계값을 어떻게 결정할 것인지가 중요합니다. 임계값보다 크면 백, 작으면 흑으로 처리됩니다. 
 <br>
 - Simple thresholding: 사용자가 고정된 임계값을 결정하고 그 결과를 보여주는 단순한 형태입니다.
