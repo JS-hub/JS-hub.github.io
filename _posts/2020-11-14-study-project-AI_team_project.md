@@ -19,10 +19,13 @@ comments: false
 - #### 3.Model
   - #### 3-1 CNN(Convolutional Neural Network)
   - #### 3-2 모델구현
-- #### 4.Evaluation & Disscussion
-  - #### 4-1 모델평가 
-- #### 5.Appendix
-  - #### 5-1 전처리 시행착오 
+- #### 4.train & Evaluation 
+  - #### 4-1 모델훈련
+  - #### 4-2 모델평가
+  - #### 4-3 팀원사진 분류 
+- #### 5.Disscussion
+- #### 6.Appendix
+  - #### 6-1 전처리 시행착오 
 
 <br>
 
@@ -196,6 +199,11 @@ for i in range(len(output)):
 X_train, Y_train = output[0], output[1] 
 X_test, Y_test = output[2], output[3]
 ```
+| |train data|test data|
+|------|---|---|
+|case1|3390개|1452개|
+|case2|2442개|1048개|
+
 여기까지 전처리를 마치고 이제 모델에 집어넣을 데이터 준비가 끝났습니다.
 
 ## 3.Model 
@@ -214,7 +222,7 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 그림6에서 보면 `3X3`의 노란색 필터가 이미지에 적용되면서 `Feature`를 뽑아내는 것을 알 수 있습니다. 필터에 각 가중치가 할당되고 이 할당된 값(**그림6**의 빨간 숫자)을 이미지에 곱연산하여 특징을 추출하는 것입니다. 이렇게 생성된 이미지를 'Feature map'이라고 합니다. **그림 6**에서 필터가 오른쪽으로 한칸씩 아래로도 한칸씩 움직이면서 진행됩니다. 이처럼 지정된 간격으로 필터가 이미지를 순회하는 간격을 `stride`라고 하며 이때는 `stride`가 1입니다.
 
 ### Channel 
-<img src = "https://pbs.twimg.com/media/DqaynZSVAAASsgl.jpg">
+
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림7. color 이미지**
 
@@ -238,8 +246,6 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 
 **그림9**는 `Maxpooling`을 보여주는 이미지 입니다. `2X2`크기의 필터에 `stride`를 2로 적용시켰을 때 필터에 영역에 해당하는 값 중에 가장 큰 값만은 뽑아 내는 것입니다. 평균 값을 뽑아내는 경우 `Average pooling` 이라고 합니다. 이미지 분류에서는 주로 `MaxPooling`을 사용합니다.
 
-### Batch Normalization
-
 ### VGGNet
 VGGNet은 2014년 ImageNet이라는 1000개의 이미지를 구별하는 대회에서 좋은 성적을 낸 모델입니다. 
 
@@ -249,9 +255,25 @@ VGGNet은 2014년 ImageNet이라는 1000개의 이미지를 구별하는 대회�
 
 저희의 경우 13layer모델을 기준으로 만들었습니다. input이미지의 크기가 400x300으로 더 크지만 Convolution layer에서 Filter의 크기가 작을 수록 특징을 잡기에 좋다는 점 때문에 Convolution layer는 그대로 유지하였습니다. 하지만 구별해야하는 것이 1000개인 반면 저희 모델은 2개만 구분하면 됐기 때문에 classificaion layer의 노드 수를 256으로 조정했습니다.
 
+
+### Batch Normalization
+Batch란 전체 데이터에서 일부분을 칭하는 단어 입니다. 신경망을 학습시킬 때 전체 데이터를 한 번에 학습시키지 않고 조그만 단위로 분할해서 학습을 시키는데 이 단위를 Batch라고 합니다.
+Bathc Normalization이 필요한 이유는 깊은 신경망일 수록 같은 Input값을 갖더라도 가중치에 따라 완전히 다른 값을 얻을 수 있습니다. 이를 해결하기 위해 각 층의 출력 값에 Batch Normalization을 통해 가중치의 차이를 완화해줍니다.
+Batch Normalization을 통해 얻는 효과는 다음과 같습니다.
+- 학습 속도가 개선된다.
+- 가중치 초기값의 의존성이 적어진다.
+- 과적합을 줄일 수 있다.
+
 ### Cross-entropy
+실제값과 예측값 사이의 차이를 계산한 값으로 실제 분포가 q이고 예측 모델링을 통해 구한 분포가 p라할 때 cross-entropy는 아래와 같이 정의됩니다. 
+$$ -\sum_{c=1}^{C}q_clog(p_c), -\frac 1 n\sum_{i=1}^{n} \sum_{c=1}^{C}q_{ic}log(p_{ic})$$
 
 ### Adam Optimmizer
+<img src = "https://JS-hub.github.io\assets\img\study\optimizer.png">
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림10. optimizer 발전 과정**
+
+Adam Optimizer가 다른 Optimizer들에 비해 좋은 성능을 내고 있기 때문에 Adam Optimizer를 사용했습니다.
 
 ## 모델구현 
 ```python
@@ -344,8 +366,51 @@ with tf.control_dependencies(update_ops):
     optimizer = tf.train.AdamOptimizer(0.001).minimize(cost)
 ```
 
-## Evaluate 
+## train & Evaluate 
 ---
+### train 
+```python
+init = tf.global_variables_initializer() 
+sess = tf.Session() 
+sess.run(init) 
+
+batch_size = 30 
+total_batch = int(len(X_train)/batch_size) 
+
+for epoch in range(100): 
+    total_cost = 0 
+
+    for i in range(total_batch):
+        batch_xs, batch_ys = X_train[i*batch_size:(i+1)*batch_size], Y_train[i*batch_size:(i+1)*batch_size] 
+        batch_xs = batch_xs.reshape(-1,400,300,3)
+        _, cost_val = sess.run([optimizer, cost],feed_dict= {X: batch_xs,
+                                                             Y: batch_ys,
+                                                             keep_prob: 0.8,
+                                                             is_training: True})
+
+        total_cost += cost_val 
+    print('Epoch:', '%04d' % (epoch + 1), 
+        'Avg.cost =', '{:.3f}'.format(total_cost / total_batch))
+```
+### evaluation
+```python
+is_correct = tf.equal(tf.argmax(model,1),tf.argmax(Y,1))
+accuracy = tf.reduce_mean(tf.cast(is_correct,tf.float32))
+t_batch = 33
+total_t_batch = int(len(X_test)/t_batch)
+
+total_acc = 0
+for i in range(total_t_batch):
+    testSet, testLabel = X_test[i*t_batch:(i+1)*t_batch] ,Y_test[i*t_batch:(i+1)*t_batch] 
+    acc = sess.run(accuracy,feed_dict={X:testSet.reshape(-1,400,300,3),
+                                       Y:testLabel,
+                                       keep_prob :1,
+                                       is_training: False})
+    total_acc +=acc
+  
+print(f'정확도 : {total_acc/total_t_batch}')
+
+```
 
 <br>
 
