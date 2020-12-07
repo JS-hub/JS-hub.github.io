@@ -126,7 +126,7 @@ for path in paths:
 ```
 
 ### Case2) 얼굴사진만을 포함한 사람사진
-얼굴 사진만을 다시 데이터셋으로 구성한 이유는 **case1)** 에서 모든 사진을 포함한 모델을 학습시켰을 때 정확도가 잘 나오지 않아서 조원끼리 상의해 본 결과 모은 사진이 너무 다양하여 사진의 Feature를 제대로 학습하지 못하였다고 판단하였습니다. 그래서 얼굴 사진으로 통일하여 다시 학습시키기 위하여 얼굴 사진만으로 이루어진 데이터셋을 만들었습니다. 
+얼굴 사진만을 다시 데이터셋으로 구성한 이유는 **case1)** 에서 모든 사진을 포함한 모델을 학습시켰을 때 정확도가 잘 나오지 않아서 조원끼리 상의해 본 결과 모은 사진이 너무 다양하여 사진의 Feature를 제대로 학습하지 못하였다고 판단하였습니다. 그래서 얼굴 사진으로 통일하면 조금 더 잘 분류할 수 있을 것이라고 생각하였고 얼굴 사진만으로 이루어진 데이터셋을 만들었습니다. 
 <img src = "https://JS-hub.github.io\assets\img\study\face_width.png" >
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림3. 얼굴 사진의 가로길이 분포**
@@ -224,11 +224,12 @@ CNN은 크게 FeatureExtraction layer와 Classificaion layer로 나뉩니다. Fe
 
 ### Channel 
 
+<img src = "https://JS-hub.github.io\assets\img\study\rgb.jpg">
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림7. color 이미지**
 
 
-**그림7**과 같은 color이미지는 Red channel,Blue Channel,Green Channel이 합쳐진 3채널 이미지 입니다. 즉 하나의 color 이미지는 3개의 채널로 이루어져있습니다. 흑백사진의 경우는 1채널입니다.
+**그림7**과 같은 color이미지는 Red channel,Blue Channel,Green Channel이 합쳐진 3채널 이미지 입니다. 즉 하나의 color 이미지는 3개의 채널로 이루어져있습니다. 흑백사진의 경우는 1채널 이미지입니다.
 
 ### Padding 
 **그림6**을 보면 특징을 추출하기 전의 이미지는 `5x5`의 크기였지만 `3x3`의 필터를 통해 추출한 `Feature map`의 크기는 `3x3`이 되었습니다. 이처럼 출력 데이터가 입력데이터 보다 작아지는데요. 이를 방지하는 방법이 `padding`입니다.
@@ -256,7 +257,7 @@ VGGNet은 2014년 ImageNet이라는 1000개의 이미지를 구별하는 대회�
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림10. VGGNet layer 구성표**
 
-저희의 경우 13layer모델을 기준으로 만들었습니다. input이미지의 크기가 400x300으로 더 크지만 Convolution layer에서 Filter의 크기가 작을 수록 특징을 잡기에 좋다는 점 때문에 Convolution layer는 그대로 유지하였습니다. 하지만 구별해야하는 것이 1000개인 반면 저희 모델은 2개만 구분하면 됐기 때문에 classificaion layer의 노드 수를 4096개에서 256으로 1000에서 2로 바꿨습니다.
+저희의 경우 13layer모델을 기준으로 만들었습니다. input이미지의 크기가 400x300으로 더 크지만 Convolution layer에서 작은 크기의 filter를 여러개 중첩시키는 것이 좋기 때문에 Convolution layer는 그대로 유지하였습니다. 하지만 구별해야하는 것이 1000개인 반면 저희 모델은 2개만 구분하면 됐기 때문에 classificaion layer의 노드 수를 4096개에서 256으로 1000에서 2로 바꿨습니다.
 
 
 ### Batch Normalization
@@ -270,14 +271,14 @@ Batch Normalization을 통해 얻는 효과는 다음과 같습니다.
 ### Cross-entropy
 실제값과 예측값 사이의 차이를 계산한 값으로 실제 분포가 q이고 예측 모델링을 통해 구한 분포가 p라할 때 cross-entropy는 아래와 같이 정의됩니다. 
 
-$$ -\sum_{c=1}^{C}q_clog(p_c), -\frac 1 n\sum_{i=1}^{n} \sum_{c=1}^{C}q_{ic}log(p_{ic})$$
+<img src = "https://JS-hub.github.io\assets\img\study\cross_ent.png">
 
 ### Adam Optimmizer
 <img src = "https://JS-hub.github.io\assets\img\study\optimizer.png">
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림11. optimizer 발전 과정**
 
-**그림 11**을 통해 Optimizer가 어떤식으로 발전했는지 대략적인 느낌은 알 수 있었습니다. 현재 Adam Optimizer가 다른 Optimizer들에 비해 좋은 성능을 내고 있기 때문에 Adam Optimizer를 사용했습니다.
+**그림 11**을 통해 Optimizer가 어떤식으로 발전했는지 대략적인 느낌은 알 수 있었습니다. Adam Optimizer가 다른 Optimizer들에 비해 좋은 성능을 내고 있기 때문에 Adam Optimizer를 사용했습니다.
 
 ## 모델구현 
 ```python
@@ -415,11 +416,18 @@ for i in range(total_t_batch):
 print(f'정확도 : {total_acc/total_t_batch}')
 
 ```
-
+|-|100epoch|200epoch|
+|------|---|---|
+|case1|58.5|70.1|
+|case2|70.6|-| 
 <br>
+
+### 팀원사진 분류 
 
 ## Disscussion
 ---
+
+
 
 ## Appendix 
 ---
@@ -481,3 +489,14 @@ plt.show()
 
 #### 한계
 Binary와 Global에서 변환된 이미지를 보면 Thresholding으로 워터마크를 제거할 수 잇지만 원본 이미지가 손상된다는 것을 알 수있었습니다. 따라서 Thresholding을 통한 워터마크 제거는 적합하지 않다고 판단했습니다.
+
+---
+### 팀원 수행 역할
+
+김덕성: 데이터 수집, 부록(워터마크 제거) 작성, 모델 부분 영상 제작
+
+김아영: 데이터 수집, 원-핫 인코딩 작성, 데이터 전처리 영상 제작
+
+박재선: 데이터 수집, 전처리 코드, 모델 코드 작성, 블로그 작성 
+
+장진웅: 데이터 수집, 전처리 코드 작성, 모델 훈련 
