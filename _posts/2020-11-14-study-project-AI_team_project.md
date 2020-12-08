@@ -281,7 +281,7 @@ Batch Normalization을 통해 얻는 효과는 다음과 같습니다.
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림11. optimizer 발전 과정**
 
-**그림 11**을 통해 Optimizer가 어떤식으로 발전했는지 대략적인 느낌은 알 수 있었습니다. Adam Optimizer가 다른 Optimizer들에 비해 좋은 성능을 내고 있기 때문에 Adam Optimizer를 사용했습니다.
+**그림 11**을 통해 Optimizer가 어떤식으로 발전했는지 대략적인 느낌은 알 수 있었습니다. Adam Optimizer가 다른 Optimizer들에 비해 좋은 성능을 내고 있기 때문에 Adam Optimizer를 사용했습니다. 그래서 훈련시에는 Cross-entropy로 구한 cost를 Adam Optimizer를 통해 최소화 하면서 훈련합니다.
 
 ## 모델구현 
 ```python
