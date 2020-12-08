@@ -274,7 +274,8 @@ Batch Normalization을 통해 얻는 효과는 다음과 같습니다.
 ### Cross-entropy
 실제값과 예측값 사이의 차이를 계산한 값으로 실제 분포가 q이고 예측 모델링을 통해 구한 분포가 p라할 때 cross-entropy는 아래와 같이 정의됩니다. 
 
-<img src = "https://JS-hub.github.io\assets\img\study\cross_ent.png">
+<img src = "https://JS-hub.github.io\assets\img\study\crossent.png">
+
 
 ### Adam Optimmizer
 <img src = "https://JS-hub.github.io\assets\img\study\optimizer.png">
