@@ -426,11 +426,6 @@ print(f'정확도 : {total_acc/total_t_batch}')
 |case1|58.5%|70.1%|72.6%|
 |case2|70.6%|72.2%|72.3%| 
 
-<br>
-
-### 팀원사진 분류 
-
-
 
 ## Disscussion
 ---
