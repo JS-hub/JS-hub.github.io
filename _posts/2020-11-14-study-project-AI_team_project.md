@@ -9,6 +9,9 @@ comments: false
 # 딥러닝을 통한 남녀 분류 모델 만들기
 ---
 
+
+<iframe width="700" height="500" src="https://www.youtube.com/embed/o1IrDC9sQoU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Index
 - #### 1.Introduction 
 - #### 2.Datasets
@@ -531,10 +534,10 @@ Binary와 Global에서 변환된 이미지를 보면 Thresholding으로 워터�
 ---
 ### 팀원 수행 역할
 
-김덕성: 데이터 수집, 부록(워터마크 제거) 작성, 모델 훈련 및 평가,모델 부분 영상 제작
+김덕성: 데이터 수집, 부록(워터마크 제거) 작성, 모델 훈련 및 평가, 모델 부분 영상 제작
 
 김아영: 데이터 수집, 전처리 부분 블로그글 작성, 데이터 전처리 영상 제작
 
-박재선: 데이터 수집, 모델 코드 작성, 모델 부분 블로그글 작성,조원 사진 분류 
+박재선: 데이터 수집, 모델 코드 작성, 모델 부분 블로그글 작성, 조원 사진 분류 
 
-장진웅: 데이터 수집, 전처리 코드 작성, 모델 훈련  및 평가
+장진웅: 데이터 수집, 전처리 코드 작성, 모델 훈련 및 평가
