@@ -427,10 +427,21 @@ print(f'정확도 : {total_acc/total_t_batch}')
 |case1|58.5%|70.1%|72.6%|
 |case2|70.6%|72.2%|72.3%| 
 
+### 조원들 사진 분류
+
+<img src = "https://JS-hub.github.io\assets\img\study\all_test.png" >
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림12. 전체 데이터셋 epoch300으로 분류한 결과**
+
+<img src = "https://JS-hub.github.io\assets\img\study\face_test.png" >
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;그림13. 얼굴 데이터셋 epoch300으로 분류한 결과**
+
+
 
 ## Disscussion
 ---
-
+전체 사진에 대해 100epoch를 돌리고 너무 낮은 accuracy가 나왔습니다. 그래서 저희는 사진에 feature가 너무 다양해서 제대로 못잡는 것 같다고 생각하였고 얼굴 사진으로 통일해서 다시 시도하게 되었습니다. 하지만 전체 사진에 대해 200 epoch로 다시 하였더니 70프로까지 확 상승하는 것을 확인할 수 있었습니다. 그 이유로는 첫번째 100epoch로 모델이 훈련하는데 부족하다는 것이였고 두번째로는 처음 돌린 모델에서 초기값에 의해 훈련이 잘 진행되지 않았다는 것입니다. 왜냐하면 200epoch를 훈련시켰을 때 100 epoch의 cost값이 처음 훈련시킨 cost값보다 훨씬 낮았습니다. 결과적으로 accuracy를 보면 두 모델이 별 차이가 없었습니다. 저희가 얼굴 사진을 수집할때도 완전히 같은 구도의 사진이 아니었기 때문에 전체 사진을 넣고 돌린 것과 별 다르지 않았을 것으로 예상됩니다.마지막으로 **그림12**와 **그림13**을 보면 전체적으로 male로 판단한 사진이 많았습니다. 원인에 대해 생각해보면 저희 모델이 male에 대해 과적합 되어있는 것 같습니다. 또한 아이러니하게도 전체 사진에 대해 훈련했을 때는 얼굴사진을 얼굴사진으로 훈련한 모델은 전신사진을 female이라 분류했습니다. 
 
 
 ## Appendix 
@@ -501,6 +512,6 @@ Binary와 Global에서 변환된 이미지를 보면 Thresholding으로 워터�
 
 김아영: 데이터 수집, 원-핫 인코딩 작성, 데이터 전처리 영상 제작
 
-박재선: 데이터 수집, 전처리 코드, 모델 코드 작성, 블로그 작성 
+박재선: 데이터 수집, 모델 코드 작성, 블로그 작성 
 
 장진웅: 데이터 수집, 전처리 코드 작성, 모델 훈련 
