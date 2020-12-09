@@ -428,6 +428,29 @@ print(f'정확도 : {total_acc/total_t_batch}')
 |case2|70.6%|72.2%|72.3%| 
 
 ### 조원들 사진 분류
+``` python
+I_copy  = I
+for i in range(len(I_copy)):
+    I_copy[i]  =  cv2.cvtColor(I[i], cv2.COLOR_BGR2RGB)
+    
+I = I.reshape(-1,400,300,3)
+labels = sess.run(model, feed_dict= {X:I,
+                                      Y:L,
+                                      keep_prob:1,
+                                      is_training:False})
+
+fig = plt.figure(figsize=(24,20))
+for i in range(15):
+    subplot = fig.add_subplot(3,5,i+1)
+    subplot.set_xticks([])
+    subplot.set_yticks([])
+
+    subplot.set_title('%s' %gender(np.argmax(labels[i])))
+    subplot.imshow(I_copy[i])
+
+```
+
+
 
 <img src = "https://JS-hub.github.io\assets\img\study\all_test.png" >
 
